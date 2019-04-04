@@ -12,7 +12,7 @@ jobs:
       - restore_cache:
           key: jars-{{ checksum "AndroidDemo/build.gradle" }}-{{ checksum  "AndroidDemo/app/build.gradle" }}
       - run:
-          name: Download Dependencies
+          name: Downloaded Dependencies
           command: ./AndroidDemo/gradlew dependencies
       - save_cache:
           paths:
@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Run EspressoTests
           working_directory: AndroidDemo
-          command: ./gradlew cAT
+          command: ./gradlew test
       - store_artifacts:
           path: app/build/reports
           destination: reports
