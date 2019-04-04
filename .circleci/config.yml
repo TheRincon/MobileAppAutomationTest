@@ -20,7 +20,8 @@ jobs:
           key: jars-{{ checksum "AndroidDemo/build.gradle" }}-{{ checksum  "AndroidDemo/app/build.gradle" }}
       - run:
           name: Run EspressoTests
-          command: ./AndroidDemo/gradlew connectedDebugAndroidTest
+          working_directory: AndroidDemo
+          command: ./gradlew cAT
       - store_artifacts:
           path: app/build/reports
           destination: reports
