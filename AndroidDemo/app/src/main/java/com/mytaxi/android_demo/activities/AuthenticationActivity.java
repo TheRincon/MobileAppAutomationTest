@@ -73,7 +73,8 @@ public class AuthenticationActivity extends AppCompatActivity {
                 String sha256 = calculateSHA256(password, mUser.getSalt());
                 if (mUser.match(username, sha256)) {
                     mSharedPrefStorage.saveUser(mUser);
-                    finish();
+                    Intent i = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(i);
                     Log.i(LOG_TAG, "Successful login with user: " + username);
                 } else {
                     View view = findViewById(android.R.id.content);
