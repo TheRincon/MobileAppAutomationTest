@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/MobileAppAutomationTest/AndroidDemo/app/
+    working_directory: ~/AndroidDemo/app/
     docker:          
       - image: circleci/android:api-28-alpha
     environment:
@@ -13,14 +13,14 @@ jobs:
           key: jars-{{ checksum "AndroidDemo/build.gradle" }}-{{ checksum  "AndroidDemo/app/build.gradle" }}
       - run:
           name: Download Dependencies
-          command: ./MobileAppAutomationTest/AndroidDemo/gradlew dependencies
+          command: ./AndroidDemo/gradlew dependencies
       - save_cache:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "AndroidDemo/build.gradle" }}-{{ checksum  "AndroidDemo/app/build.gradle" }}
       - run:
           name: Run EspressoTests
-          command: ./MobileAppAutomationTest/AndroidDemo/gradlew connectedDebugAndroidTest
+          command: ./AndroidDemo/gradlew connectedDebugAndroidTest
       - store_artifacts:
           path: app/build/reports
           destination: reports
