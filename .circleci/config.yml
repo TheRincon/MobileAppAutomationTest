@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/AndroidDemo/app
     docker:          
-      - image: circleci/android:api-25-alpha
+      - image: circleci/android:api-29-alpha
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
@@ -20,7 +20,7 @@ jobs:
           key: jars-{{ checksum "AndroidDemo/build.gradle" }}-{{ checksum  "AndroidDemo/app/build.gradle" }}
       - run:
           name: Run EspressoTests
-          command: ./AndroidDemo/gradlew AutomatedTaskTest
+          command: ./AndroidDemo/gradlew cAT
       - store_artifacts:
           path: app/build/reports
           destination: reports
